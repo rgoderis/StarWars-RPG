@@ -1,0 +1,13 @@
+.img {
+    height: 100%;
+    width: 100%
+}
+
+.imgBox{
+    height: 100px;
+}
+
+#availableCharacters{
+    width: 60%;
+    height: 100%
+}

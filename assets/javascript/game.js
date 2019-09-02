@@ -5,23 +5,27 @@ var compAttack;
 
 var characters = [
             {
-                name: "",
+                name: "Luke Skywalker",
                 img: "",
-                attack: num,
-                counterAttack: num},
+                hp: 100,
+                attack: 10,
+                counterAttack: 10},
             {
-                name: "",
+                name: "Darth Vader",
                 img: "",
-                attack: num,
-                counterAttack: num},
+                hp: 100,
+                attack: 10,
+                counterAttack: 10},
             {
-                name: "",
+                name: "Emperor Palpatine",
                 img: "",
-                attack: num,
-                counterAttack: num},
+                hp: 100,
+                attack: 10,
+                counterAttack: 10},
             {
-                name: "",
+                name: "Obi-Wan Kenobi",
                 img: "",
-                attack: num,
-                counterAttack: num}];
+                hp: 100,
+                attack: 10,
+                counterAttack: 10}];
 

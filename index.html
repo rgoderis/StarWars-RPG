@@ -6,26 +6,39 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Star Wars RPG Game</title>
     <link rel="stylesheet" href="assets/css/reset.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="assets/css/style.css">
     <script src="assets/javascript/game.js"></script>
 </head>
 <body>
     <h1>Star Wars RPG!</h1>
      <!-- div of available characters to choose from -->
-     <div ></div>
+     <div id="availableCharacters">
+        <div class="card text-center">
+            <div class="card-header name">
+              <!-- character name -->
+            </div>
+            <div class="card-body img">
+                <!-- character img -->
+                <img src="..." class="card-img-top" alt="...">
+            </div>
+            <div class="card-footer hp">
+              <!-- HP -->
+            </div>
+        </div>
+     </div>
     <h2>Your Character</h2>
     <!--  div showing only the character you selected-->
-    <div></div>
-    <div></div>
+    <div id="userCharacter"></div>
     <h2>Enemies Available to Attack</h2>
     <!-- div of enemies available to attack -->
-    <div></div>
+    <div id="availableEnemies"></div>
     <h2>Fight Section</h2>
     <!-- attack button -->
     <button>Attack</button>
     <h2>Defender</h2>
     <!-- div of enemy currently fighting -->
-    <div></div>
+    <div id="compCharacter"></div>
     <!-- div of text showing attack info  -->
     <div>
         <!-- you attacked "enemy" for "attack" damage -->
@@ -39,5 +52,10 @@
     </div>
 
 
+
+    <script
+    src="https://code.jquery.com/jquery-3.4.1.min.js"
+    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+    crossorigin="anonymous"></script>
 </body>
 </html>

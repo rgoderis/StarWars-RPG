@@ -1,6 +1,6 @@
-img {
+.img {
     height: 100%;
-    width: 100%
+    width: 100%;
 }
 
 .imgBox{
@@ -10,4 +10,10 @@ img {
 #availableCharacters{
     width: 60%;
     height: 100%
+}
+
+#userCharacter{
+    width: 60%;
+    height: 100%;
+    max-width: 216px;
 }

@@ -30,23 +30,19 @@ var characters = [
                 hp: 100,
                 attack: 10,
                 counterAttack: 10}];
-// display character name
-// characters.forEach(displayName)
-// function displayName(character) {
-//     console.log(character.name)
-//     $(".name").text(character.name)
-// }
+
+// displays available characters from characters array
+characters.forEach(function(char){
+    $("#availableCharacters").append("<div class='col-3'><div class='card text-center character'><div class='card-header name'>"+char.name+"</div><div class='imgBox'><img src="+char.img+" class='img' alt="+char.name+"></div><div class='card-footer hp'>"+char.hp+"</div></div></div>")
+})
 
 
-
+// activates when a available character is clicked
 $(".character").on("click", function(){
-    console.log(this);
+    // moves clicked character to the Your Character section
     $("#userCharacter").append(this)
+    // hides the other available characters that weren't selected
     $("#availableCharacters").css("display", "none")
-    // console.log(this.name)
-    // $("#charName").text("character name");
-    // $("#charImg").text("character image");
-    // $("#charHP").text("character hp");
 });
 
 

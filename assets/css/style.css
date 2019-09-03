@@ -7,7 +7,7 @@
     height: 100px;
 }
 
-#availableCharacters{
+#availableCharacters, #availableEnemies{
     width: 60%;
     height: 100%
 }
@@ -17,3 +17,5 @@
     height: 100%;
     max-width: 216px;
 }
+
+#availableEnemies 

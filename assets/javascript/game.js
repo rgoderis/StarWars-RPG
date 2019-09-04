@@ -33,20 +33,20 @@ $(document).ready(function() {
 
     // displays available characters from characters array
     characters.forEach(function(char){
-     $("#availableCharacters").append("<div class='col-3'><div class='card text-center character'><div class='card-header name'>"+char.name+"</div><div class='imgBox'><img src="+char.img+" class='img' alt="+char.name+"></div><div class='card-footer hp'>"+char.hp+"</div></div></div>")
+     $("#availableCharacters").append("<div class='col-3 character'><div class='card text-center'><div class='card-header name'>"+char.name+"</div><div class='imgBox'><img src="+char.img+" class='img' alt="+char.name+"></div><div class='card-footer hp'>"+char.hp+"</div></div></div>")
     })
-
 
     // activates when a available character is clicked
     $(".character").on("click", function(){
-    
+        
         // moves clicked character to the Your Character section
         $("#userCharacter").append(this);
- 
+        
         // moves remaining characters to Avaialble Enemies
+        $("#availableEnemies").append($("#availableCharacters"))
 
         // hides the other available characters that weren't selected
-        $("#availableCharacters").css("display", "none")
+        // $("#availableCharacters").css("display", "none")
     });
 
 

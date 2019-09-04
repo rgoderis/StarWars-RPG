@@ -7,7 +7,7 @@
     height: 100px;
 }
 
-#availableCharacters, #userCharacter{
+#availableCharacters, #userCharacter, #chosenEnemy{
     width: 60%;
     height: 100%
 }

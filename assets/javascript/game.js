@@ -47,6 +47,7 @@ function charIndex(arr) {
         characters[index].value = index;
     })
 }
+// sets index of characters
 charIndex(characters)
 
 // functons that calculates the attack value
@@ -62,51 +63,62 @@ function displayCharacters(id, arr) {
         $(id).append("<div class='col-3 character' value="+char.value+"><div class='card text-center'><div class='card-header name'>"+char.name+"</div><div class='imgBox'><img src="+char.img+" class='img' alt="+char.name+"></div><div class='card-footer hp'>"+char.hp+"</div></div></div>")
         });        
 }
+
+// same as before but changes class of character to enemy
+function displayEnemies(id, arr){
+    arr.forEach(function(char){
+        $(id).append("<div class='col-3 enemy' value="+char.value+"><div class='card text-center'><div class='card-header name'>"+char.name+"</div><div class='imgBox'><img src="+char.img+" class='img' alt="+char.name+"></div><div class='card-footer hp'>"+char.hp+"</div></div></div>")
+        });     
+}
+
 $(document).ready(function() {
 
     // displays characters to availableCharacters div
     displayCharacters("#availableCharacters", characters)
 
-    // activates when a available character is clicked
+    // activates when a available character is clicked 
     $(".character").on("click", function(){
-        // if(userSelected === false){
-        
-        $(this).addClass("user")
-        // retrieving index of user character
-        userIndex = parseInt($(".user").attr("value"));
-        userArray = characters.splice(userIndex, 1);
-        charIndex(characters)
-        $("#availableCharacters").css("display", "none")
+        if(userSelected){
+            return(false)
+        } else{  
+            $(this).addClass("user")
+            // retrieving index of user character
+            userIndex = parseInt($(".user").attr("value"));
+            userArray = characters.splice(userIndex, 1);
+            // updates value in characters array
+            charIndex(characters)
+            // updates value in userArray
+            userArray[0].value = 0
+            // hides availableCharacters div
+            $("#availableCharacters").css("display", "none")
+            // moves clicked character to the Your Character section
+            displayCharacters("#userCharacter", userArray)
+            // moves new array of available characters to availableEnemies div
+            displayEnemies("#availableEnemies", characters)
+            userSelected = true;  
+        }
+    });  
 
-        // moves clicked character to the Your Character section
-        displayCharacters("#userCharacter", userArray)
+    // activates when a enemy is clicked
+    $(".enemy").on("click", function(){    
+        if(enemySelected){
+            return(false)
+        } else{
+            $(this).addClass("chosenEnemy")
+            // retrieves index of enemy character
+            enemyIndex = parseInt($(".enemy").attr("value"))
+            enemyArray = characters.splice(enemyIndex, 1);
+            // updates value in characters array
+            charIndex(characters);
+            // updates value in enemyArray
+            charIndex(enemyArray)
+            // updates availableEnemies
+            displayEnemies("#availableEnemies", characters)
+            // displays selected enemy in chosenEnemy div
+            displayCharacters("#chosenEnemy", enemyArray)
+            enemySelected = true;
+        }
 
-        // moves new array of available characters to availableEnemies div
-        displayCharacters("#availableEnemies", characters)
-          
-            
-        // remove .character class from userCharacter div
-        // $(this).removeClass("character")
-
-        // moves remaining characters to Avaialble Enemies
-        // $("#availableEnemies").append($("#availableCharacters"))                 
-        // userSelected = true;          
-        // } 
-        // else {
-
-        //     // moves clicked character to chosenEnemy div
-        //     $("#chosenEnemy").append(this);
-        //     enemySelected = true;
-        // }
-
-        // // prevent user from clicking on another character
-        // if(enemySelected === true){
-        //     // should prevent the user from clicking on any other characters
-        //     $(".character").off("click");
-        // }
     });
-    
-
-    // attackCounter(characters[0].attack)
 
 });

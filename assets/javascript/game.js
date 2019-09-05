@@ -57,15 +57,15 @@ charIndex(characters)
 // }
 
 // function that displays character array to DOM
-function displayCharacters(id) {
-    characters.forEach(function(char){
+function displayCharacters(id, arr) {
+    arr.forEach(function(char){
         $(id).append("<div class='col-3 character' value="+char.value+"><div class='card text-center'><div class='card-header name'>"+char.name+"</div><div class='imgBox'><img src="+char.img+" class='img' alt="+char.name+"></div><div class='card-footer hp'>"+char.hp+"</div></div></div>")
         });        
 }
 $(document).ready(function() {
 
     // displays characters to availableCharacters div
-    displayCharacters("#availableCharacters")
+    displayCharacters("#availableCharacters", characters)
 
     // activates when a available character is clicked
     $(".character").on("click", function(){
@@ -76,12 +76,13 @@ $(document).ready(function() {
         userIndex = parseInt($(".user").attr("value"));
         userArray = characters.splice(userIndex, 1);
         charIndex(characters)
-
-        console.log(userArray)
-        console.log(characters)
+        $("#availableCharacters").css("display", "none")
 
         // moves clicked character to the Your Character section
-        displayCharacters("#availableEnemies")
+        displayCharacters("#userCharacter", userArray)
+
+        // moves new array of available characters to availableEnemies div
+        displayCharacters("#availableEnemies", characters)
           
             
         // remove .character class from userCharacter div

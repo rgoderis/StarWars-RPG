@@ -120,13 +120,13 @@ $(document).ready(function() {
             return(false)
             // if last enemy has been selected
         } else if(characters.length === 1 && enemyArray.length === 0){
-            alert("last enemy")
-            // an error appears when the last enemy is initially clicked however when clicked again he becomes selected
             // display enemyArray in #defender
             displayCharacters("#defender", characters);
             // updates enemyHP with defender
             enemyHp = enemyArray[0];
+            // clears availableEnemies div
             $("#availableEnemies").empty();
+            // eneables attack button
             enemySelected = true;
         }
         else{
@@ -142,7 +142,8 @@ $(document).ready(function() {
             charIndex(enemyArray);
             // displays selected enemy in defender div
             displayCharacters("#defender", enemyArray);
-            enemyHp = enemyArray[0].hp;            
+            enemyHp = enemyArray[0].hp;  
+            // enables attack button
             enemySelected = true;
             // updates availableEnemies
             $("#availableEnemies").empty();
@@ -153,7 +154,6 @@ $(document).ready(function() {
     
     $(document).on("click", "#attack", function(){
         if(enemySelected !== true){
-            // return(false);
             return(false);
         } else {
             countingAttack(userArray[0].attack)
@@ -178,6 +178,4 @@ $(document).ready(function() {
         }
         
     })
-
-
 });

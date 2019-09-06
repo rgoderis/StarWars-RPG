@@ -1,7 +1,7 @@
 
 
-var hp1 = 100;
-var hp2 = 100
+var userHp;
+var enemyHp;
 var baseAttack;
 var userAttack = 0;
 var counterAttack;
@@ -57,10 +57,19 @@ charIndex(characters)
 function countingAttack(attack) {
     // sets baseAttack to attack
     baseAttack = attack
-    console.log(baseAttack)
     // add baseAttack to userAttack
     userAttack += baseAttack      
 } 
+
+// function that calculates user health
+function userHealth(attack) {
+    userHp -= attack
+}
+
+// function that calculates enemy health 
+function enemyHealth(attack) {
+    enemyHp -= attack
+}
 
 // function that displays character array to DOM
 function displayCharacters(id, arr) {
@@ -100,6 +109,7 @@ $(document).ready(function() {
             displayCharacters("#userCharacter", userArray)
             // moves new array of available characters to availableEnemies div
             displayEnemies("#availableEnemies", characters)
+            userHp = userArray[0].hp;
             userSelected = true;  
         }
     });  
@@ -122,22 +132,30 @@ $(document).ready(function() {
             displayEnemies("#availableEnemies", characters);
             // displays selected enemy in chosenEnemy div
             displayCharacters("#chosenEnemy", enemyArray);
+            enemyHp = enemyArray[0].hp;
             enemySelected = true;
         }
     });
-
+    
+    
     $(document).on("click", "#attack", function(){
+        
+        // console.log("User HP is: " + userHp);
+        
+        // console.log("Enemy HP is: " + enemyHp)
         countingAttack(userArray[0].attack)
-        console.log(userAttack)
+        console.log("User Attack is: " + userAttack)
+        counterAttack = enemyArray[0].counterAttack;
+        console.log("Enemy Countattack is: " + counterAttack)
+        // create function that calculates user health
+        userHealth(counterAttack)
+        
+        // create function that calculates enemy health
+        enemyHealth(userAttack)
+        
 
-        
-        // var countingAttack = userArray[0].attack
-        // attackCounter(countingAttack)
-        // function attackCounter(attack) {
-        //     baseAttack = attack
-        //     userAttack = attack + baseAttack
-        // }
-        
+        console.log("User's remaining health is: " + userHp+ ", and Enemy's remaining health is: " + enemyHp);
+
     })
 
 

@@ -127,6 +127,7 @@ $(document).ready(function() {
             // updates enemyHP with defender
             enemyHp = enemyArray[0];
             $("#availableEnemies").empty();
+            enemySelected = true;
         }
         else{
             $(this).addClass("chosenEnemy")
@@ -151,29 +152,31 @@ $(document).ready(function() {
     
     
     $(document).on("click", "#attack", function(){
-        
-        // console.log("User HP is: " + userHp);
-        
-        // console.log("Enemy HP is: " + enemyHp)
-        countingAttack(userArray[0].attack)
-        console.log("User Attack is: " + userAttack)
-        counterAttack = enemyArray[0].counterAttack;
-        console.log("Enemy Countattack is: " + counterAttack)
-        // calculates user health
-        userHealth(counterAttack)
-        // calculates enemy health
-        enemyHealth(userAttack)
-        console.log("User's remaining health is: " + userHp+ ", and Enemy's remaining health is: " + enemyHp);
-        // display user health and enemy health to DOM
-        if(userHp <= 0){
-            console.log("you died")
+        if(enemySelected !== true){
+            // return(false);
+            return(false);
+        } else {
+            countingAttack(userArray[0].attack)
+            console.log("User Attack is: " + userAttack)
+            counterAttack = enemyArray[0].counterAttack;
+            console.log("Enemy Countattack is: " + counterAttack)
+            // calculates user health
+            userHealth(counterAttack)
+            // calculates enemy health
+            enemyHealth(userAttack)
+            console.log("User's remaining health is: " + userHp+ ", and Enemy's remaining health is: " + enemyHp);
+            // display user health and enemy health to DOM
+            if(userHp <= 0){
+                console.log("you died")
+            }
+            if(enemyHp <= 0){
+                console.log("you killed him");
+                enemyArray = []
+                $("#defender").empty();
+                enemySelected = false;
+            }
         }
-        if(enemyHp <= 0){
-            console.log("you killed him");
-            enemyArray = []
-            $("#defender").empty();
-            enemySelected = false;
-        }
+        
     })
 
 

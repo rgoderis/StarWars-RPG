@@ -12,6 +12,7 @@ var enemyArray;
 var isDefeated = false;
 var userSelected = false;
 var enemySelected = false;
+var restart = false;
 
 var characters = [
         {
@@ -123,7 +124,7 @@ $(document).ready(function() {
             // display enemyArray in #defender
             displayCharacters("#defender", characters);
             // updates enemyHP with defender
-            enemyHp = enemyArray[0];
+            enemyHp = characters[0].hp;
             // clears availableEnemies div
             $("#availableEnemies").empty();
             // eneables attack button
@@ -133,9 +134,7 @@ $(document).ready(function() {
             $(this).addClass("chosenEnemy")
             // retrieves index of enemy character
             enemyIndex = parseInt($(".chosenEnemy").attr("value"));
-            alert(enemyIndex)
             enemyArray = characters.splice(enemyIndex, 1);
-            alert(enemyArray)
             // updates value in characters array
             charIndex(characters);
             // updates value in enemyArray
@@ -155,7 +154,23 @@ $(document).ready(function() {
     $(document).on("click", "#attack", function(){
         if(enemySelected !== true){
             return(false);
-        } else {
+        } else if(enemySelected === true && enemyArray.length === 0){
+            countingAttack(userArray[0].attack);
+            counterAttack = characters[0].counterAttack;
+            userHealth(counterAttack);
+            enemyHealth(userAttack)
+            console.log("User's remaining health is: " + userHp+ ", and Enemy's remaining health is: " + enemyHp);
+            if(enemyHp <= 0){
+                restart = true;
+                console.log("you Win");
+                $("#defender").empty();
+            }
+            else if (userHp <=0 ){
+                console.log("you died")
+            }
+        }
+        
+        else {
             countingAttack(userArray[0].attack)
             console.log("User Attack is: " + userAttack)
             counterAttack = enemyArray[0].counterAttack;
@@ -168,8 +183,9 @@ $(document).ready(function() {
             // display user health and enemy health to DOM
             if(userHp <= 0){
                 console.log("you died")
+                restart = true;
             }
-            if(enemyHp <= 0){
+            else if(enemyHp <= 0){
                 console.log("you killed him");
                 enemyArray = []
                 $("#defender").empty();

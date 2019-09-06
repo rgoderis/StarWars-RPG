@@ -18,28 +18,28 @@ var characters = [
             name: "Luke Skywalker",
             img: "assets/images/luke-skywalker.jpeg",
             hp: 100,
-            attack: 6,
+            attack: 10,
             counterAttack: 10,
             value: ""},
         {
             name: "Darth Vader",
             img: "assets/images/darth-vader.jpg",
             hp: 150,
-            attack: 10,
+            attack: 20,
             counterAttack: 20,
             value: ""},
         {
             name: "Emperor Palpatine",
             img: "assets/images/emperor-palpatine.jpg",
             hp: 175,
-            attack: 12,
+            attack: 25,
             counterAttack: 25,
             value: ""},
         {
             name: "Obi-Wan Kenobi",
             img: "assets/images/obi-wan-kenobi.png",
             hp: 125,
-            attack: 8,
+            attack: 15,
             counterAttack: 15,
             value: ""}];
 
@@ -118,22 +118,34 @@ $(document).ready(function() {
     $(document).on("click", ".enemy", function(){    
         if(enemySelected){
             return(false)
-        } else{
+            // if last enemy has been selected
+        } else if(characters.length === 1 && enemyArray.length === 0){
+            alert("last enemy")
+            // an error appears when the last enemy is initially clicked however when clicked again he becomes selected
+            // display enemyArray in #defender
+            displayCharacters("#defender", characters);
+            // updates enemyHP with defender
+            enemyHp = enemyArray[0];
+            $("#availableEnemies").empty();
+        }
+        else{
             $(this).addClass("chosenEnemy")
             // retrieves index of enemy character
             enemyIndex = parseInt($(".chosenEnemy").attr("value"));
+            alert(enemyIndex)
             enemyArray = characters.splice(enemyIndex, 1);
+            alert(enemyArray)
             // updates value in characters array
             charIndex(characters);
             // updates value in enemyArray
             charIndex(enemyArray);
+            // displays selected enemy in defender div
+            displayCharacters("#defender", enemyArray);
+            enemyHp = enemyArray[0].hp;            
+            enemySelected = true;
             // updates availableEnemies
             $("#availableEnemies").empty();
-            displayEnemies("#availableEnemies", characters);
-            // displays selected enemy in chosenEnemy div
-            displayCharacters("#chosenEnemy", enemyArray);
-            enemyHp = enemyArray[0].hp;
-            enemySelected = true;
+            displayEnemies("#availableEnemies", characters);            
         }
     });
     
@@ -158,7 +170,8 @@ $(document).ready(function() {
         }
         if(enemyHp <= 0){
             console.log("you killed him");
-            $("#chosenEnemy").empty();
+            enemyArray = []
+            $("#defender").empty();
             enemySelected = false;
         }
     })

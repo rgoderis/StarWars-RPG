@@ -121,7 +121,7 @@ $(document).ready(function() {
         } else{
             $(this).addClass("chosenEnemy")
             // retrieves index of enemy character
-            enemyIndex = $(".chosenEnemy").attr("value")
+            enemyIndex = parseInt($(".chosenEnemy").attr("value"));
             enemyArray = characters.splice(enemyIndex, 1);
             // updates value in characters array
             charIndex(characters);
@@ -147,15 +147,20 @@ $(document).ready(function() {
         console.log("User Attack is: " + userAttack)
         counterAttack = enemyArray[0].counterAttack;
         console.log("Enemy Countattack is: " + counterAttack)
-        // create function that calculates user health
+        // calculates user health
         userHealth(counterAttack)
-        
-        // create function that calculates enemy health
+        // calculates enemy health
         enemyHealth(userAttack)
-        
-
         console.log("User's remaining health is: " + userHp+ ", and Enemy's remaining health is: " + enemyHp);
-
+        // display user health and enemy health to DOM
+        if(userHp <= 0){
+            console.log("you died")
+        }
+        if(enemyHp <= 0){
+            console.log("you killed him");
+            $("#chosenEnemy").empty();
+            enemySelected = false;
+        }
     })
 
 

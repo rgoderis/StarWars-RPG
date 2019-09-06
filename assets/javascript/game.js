@@ -2,7 +2,8 @@
 
 var hp1 = 100;
 var hp2 = 100
-var userAttack;
+var baseAttack;
+var userAttack = 0;
 var counterAttack;
 var userIndex;
 var userArray;
@@ -17,7 +18,7 @@ var characters = [
             name: "Luke Skywalker",
             img: "assets/images/luke-skywalker.jpeg",
             hp: 100,
-            attack: 10,
+            attack: 6,
             counterAttack: 10,
             value: ""},
         {
@@ -31,14 +32,14 @@ var characters = [
             name: "Emperor Palpatine",
             img: "assets/images/emperor-palpatine.jpg",
             hp: 175,
-            attack: 10,
+            attack: 12,
             counterAttack: 25,
             value: ""},
         {
             name: "Obi-Wan Kenobi",
             img: "assets/images/obi-wan-kenobi.png",
             hp: 125,
-            attack: 10,
+            attack: 8,
             counterAttack: 15,
             value: ""}];
 
@@ -52,12 +53,14 @@ function charIndex(arr) {
 // sets index of characters
 charIndex(characters)
 
-// functons that calculates the attack value
-// function attackCounter(attack) {
-//     var baseAttack = attack
-//     var newAttack = attack + baseAttack
-//     console.log(newAttack)
-// }
+// function that increases attack amount
+function countingAttack(attack) {
+    // sets baseAttack to attack
+    baseAttack = attack
+    console.log(baseAttack)
+    // add baseAttack to userAttack
+    userAttack += baseAttack      
+} 
 
 // function that displays character array to DOM
 function displayCharacters(id, arr) {
@@ -113,14 +116,29 @@ $(document).ready(function() {
             // updates value in characters array
             charIndex(characters);
             // updates value in enemyArray
-            charIndex(enemyArray)
+            charIndex(enemyArray);
             // updates availableEnemies
-            displayEnemies("#availableEnemies", characters)
+            $("#availableEnemies").empty();
+            displayEnemies("#availableEnemies", characters);
             // displays selected enemy in chosenEnemy div
-            displayCharacters("#chosenEnemy", enemyArray)
+            displayCharacters("#chosenEnemy", enemyArray);
             enemySelected = true;
         }
-
     });
+
+    $(document).on("click", "#attack", function(){
+        countingAttack(userArray[0].attack)
+        console.log(userAttack)
+
+        
+        // var countingAttack = userArray[0].attack
+        // attackCounter(countingAttack)
+        // function attackCounter(attack) {
+        //     baseAttack = attack
+        //     userAttack = attack + baseAttack
+        // }
+        
+    })
+
 
 });

@@ -1,3 +1,5 @@
+
+
 var hp1 = 100;
 var hp2 = 100
 var userAttack;
@@ -100,13 +102,13 @@ $(document).ready(function() {
     });  
 
     // activates when a enemy is clicked
-    $(".enemy").on("click", function(){    
+    $(document).on("click", ".enemy", function(){    
         if(enemySelected){
             return(false)
         } else{
             $(this).addClass("chosenEnemy")
             // retrieves index of enemy character
-            enemyIndex = parseInt($(".enemy").attr("value"))
+            enemyIndex = $(".chosenEnemy").attr("value")
             enemyArray = characters.splice(enemyIndex, 1);
             // updates value in characters array
             charIndex(characters);

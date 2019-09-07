@@ -19,28 +19,28 @@ var characters = [
             name: "Luke Skywalker",
             img: "assets/images/luke-skywalker.jpeg",
             hp: 100,
-            attack: 10,
+            attack: 15,
             counterAttack: 10,
             value: ""},
         {
             name: "Darth Vader",
             img: "assets/images/darth-vader.jpg",
             hp: 150,
-            attack: 20,
+            attack: 25,
             counterAttack: 20,
             value: ""},
         {
             name: "Emperor Palpatine",
             img: "assets/images/emperor-palpatine.jpg",
-            hp: 175,
-            attack: 25,
+            hp: 180,
+            attack: 20,
             counterAttack: 25,
             value: ""},
         {
             name: "Obi-Wan Kenobi",
             img: "assets/images/obi-wan-kenobi.png",
-            hp: 125,
-            attack: 15,
+            hp: 120,
+            attack: 8,
             counterAttack: 15,
             value: ""}];
 
@@ -148,50 +148,64 @@ $(document).ready(function() {
             $("#availableEnemies").empty();
             displayEnemies("#availableEnemies", characters);            
         }
-    });
-    
-    
+    });   
+
+    // combat logic
     $(document).on("click", "#attack", function(){
         if(enemySelected !== true){
+            $("#combatText").text("please select an enemy to fight");
             return(false);
+            // happens during the last enemy fight
         } else if(enemySelected === true && enemyArray.length === 0){
-            countingAttack(userArray[0].attack);
-            counterAttack = characters[0].counterAttack;
-            userHealth(counterAttack);
-            enemyHealth(userAttack)
-            console.log("User's remaining health is: " + userHp+ ", and Enemy's remaining health is: " + enemyHp);
-            if(enemyHp <= 0){
-                restart = true;
-                console.log("you Win");
-                $("#defender").empty();
-            }
-            else if (userHp <=0 ){
-                console.log("you died")
-            }
-        }
-        
-        else {
+            // user attacks when attack button is clicked
             countingAttack(userArray[0].attack)
-            console.log("User Attack is: " + userAttack)
-            counterAttack = enemyArray[0].counterAttack;
-            console.log("Enemy Countattack is: " + counterAttack)
-            // calculates user health
-            userHealth(counterAttack)
-            // calculates enemy health
+            // enemyhealth is decreased by user attack
             enemyHealth(userAttack)
-            console.log("User's remaining health is: " + userHp+ ", and Enemy's remaining health is: " + enemyHp);
-            // display user health and enemy health to DOM
-            if(userHp <= 0){
-                console.log("you died")
-                restart = true;
-            }
-            else if(enemyHp <= 0){
-                console.log("you killed him");
-                enemyArray = []
+            // if the user kills the enemy
+            if(enemyHp <= 0){
+                $("#combatText").text("You Win!!! Please play again!")
+                // clears defender div
                 $("#defender").empty();
+                // allows the user to restart the game
+                restart = true;
+            } else {
+                // counter attack damage
+                counterAttack = characters[0].counterAttack;
+                // the enemy counter attacks the user
+                userHealth(counterAttack)
+                $("#combatText").text("You attacked the enemy for " + userAttack + " and he counter attacked for " + counterAttack + ". User hp is " + userHp + " enemy hp is " + enemyHp)
+                if(userHp <= 0) {
+                    $("#combatText").text("You died, try again")
+                    restart = true
+                }
+            } // happens if an enemy is selected 
+        } else {
+            // user attacks when attack button is clicked
+            countingAttack(userArray[0].attack)
+            // enemyhealth is decreased by user attack
+            enemyHealth(userAttack)
+            // if the user kills the enemy
+            if(enemyHp <= 0){
+                $("#combatText").text("you attacked the enemy for " + userAttack + " and killed him.  Your ramaining health is " + userHp)
+                // clears enemyArray
+                enemyArray = [];
+                // clears defender div
+                $("#defender").empty();
+                // allows the user to select a new enemy
                 enemySelected = false;
+            } else {
+                // counter attack damage
+                counterAttack = enemyArray[0].counterAttack;
+                // the enemy counter attacks the user
+                userHealth(counterAttack)
+                $("#combatText").text("You attacked the enemy for " + userAttack + " and he counter attacked for " + counterAttack + ". User hp is " + userHp + " enemy hp is " + enemyHp)
+                // if the user dies
+                if(userHp <= 0) {
+                    $("#combatText").text("You died, try again")
+                    // allows the user to restart
+                    restart = true
+                }
             }
-        }
-        
+        }        
     })
 });

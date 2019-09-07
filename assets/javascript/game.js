@@ -175,7 +175,15 @@ $(document).ready(function() {
                 counterAttack = characters[0].counterAttack;
                 // the enemy counter attacks the user
                 userHealth(counterAttack)
-                $("#combatText").text(userName +  " attacked " + enemyName +" for " + userAttack + " damage. " + enemyName + " counter attacked for " + counterAttack + " damage. " + userName + " remaining hp is " + userHp + " . " + enemyName + " remaining hp is " + enemyHp)
+                // refreshes user character with new HP
+                userArray[0].hp = userHp 
+                $("#userCharacter").empty()
+                displayCharacters("#userCharacter", userArray)
+                // refreshes enemy character with new HP
+                characters[0].hp = enemyHp
+                $("#defender").empty();
+                displayCharacters("#defender", characters);                
+                $("#combatText").text(userName +  " attacked " + enemyName +" for " + userAttack + " damage. " + enemyName + " counter attacked for " + counterAttack + " damage. " + userName + "'s remaining hp is " + userHp + " . " + enemyName + "'s remaining hp is " + enemyHp)
                 if(userHp <= 0) {
                     $("#combatText").text("You died, try again")
                     restart = true
@@ -202,7 +210,15 @@ $(document).ready(function() {
                 counterAttack = enemyArray[0].counterAttack;
                 // the enemy counter attacks the user
                 userHealth(counterAttack)
-                $("#combatText").text(userName +  " attacked " + enemyName +" for " + userAttack + " damage. " + enemyName + " counter attacked for " + counterAttack + " damage. " + userName + " remaining hp is " + userHp + " . " + enemyName + " remaining hp is " + enemyHp)
+                // refreshes user character with new HP
+                userArray[0].hp = userHp 
+                $("#userCharacter").empty()
+                displayCharacters("#userCharacter", userArray)
+                // refreshes enemy character with new HP
+                enemyArray[0].hp = enemyHp
+                $("#defender").empty();
+                displayCharacters("#defender", enemyArray);
+                $("#combatText").text(userName +  " attacked " + enemyName +" for " + userAttack + " damage. " + enemyName + " counter attacked for " + counterAttack + " damage. " + userName + "'s remaining hp is " + userHp + " . " + enemyName + "'s remaining hp is " + enemyHp)
                 // if the user dies
                 if(userHp <= 0) {
                     $("#combatText").text("You died, try again")

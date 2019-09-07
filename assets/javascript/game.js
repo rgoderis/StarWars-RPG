@@ -161,6 +161,8 @@ $(document).ready(function() {
             countingAttack(userArray[0].attack)
             // enemyhealth is decreased by user attack
             enemyHealth(userAttack)
+            userName = userArray[0].name
+            enemyName = characters[0].name
             // if the user kills the enemy
             if(enemyHp <= 0){
                 $("#combatText").text("You Win!!! Please play again!")
@@ -173,7 +175,7 @@ $(document).ready(function() {
                 counterAttack = characters[0].counterAttack;
                 // the enemy counter attacks the user
                 userHealth(counterAttack)
-                $("#combatText").text("You attacked the enemy for " + userAttack + " and he counter attacked for " + counterAttack + ". User hp is " + userHp + " enemy hp is " + enemyHp)
+                $("#combatText").text(userName +  " attacked " + enemyName +" for " + userAttack + " damage. " + enemyName + " counter attacked for " + counterAttack + " damage. " + userName + " remaining hp is " + userHp + " . " + enemyName + " remaining hp is " + enemyHp)
                 if(userHp <= 0) {
                     $("#combatText").text("You died, try again")
                     restart = true
@@ -184,9 +186,11 @@ $(document).ready(function() {
             countingAttack(userArray[0].attack)
             // enemyhealth is decreased by user attack
             enemyHealth(userAttack)
+            userName = userArray[0].name
+            enemyName = enemyArray[0].name
             // if the user kills the enemy
             if(enemyHp <= 0){
-                $("#combatText").text("you attacked the enemy for " + userAttack + " and killed him.  Your ramaining health is " + userHp)
+                $("#combatText").text(userName +  " attacked " + enemyName +" for " + userAttack + " damage and killed him.  Your ramaining health is " + userHp)
                 // clears enemyArray
                 enemyArray = [];
                 // clears defender div
@@ -198,7 +202,7 @@ $(document).ready(function() {
                 counterAttack = enemyArray[0].counterAttack;
                 // the enemy counter attacks the user
                 userHealth(counterAttack)
-                $("#combatText").text("You attacked the enemy for " + userAttack + " and he counter attacked for " + counterAttack + ". User hp is " + userHp + " enemy hp is " + enemyHp)
+                $("#combatText").text(userName +  " attacked " + enemyName +" for " + userAttack + " damage. " + enemyName + " counter attacked for " + counterAttack + " damage. " + userName + " remaining hp is " + userHp + " . " + enemyName + " remaining hp is " + enemyHp)
                 // if the user dies
                 if(userHp <= 0) {
                     $("#combatText").text("You died, try again")

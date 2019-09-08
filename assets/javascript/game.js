@@ -1,5 +1,3 @@
-
-
 var userHp;
 var enemyHp;
 var baseAttack;
@@ -13,6 +11,7 @@ var isDefeated = false;
 var userSelected = false;
 var enemySelected = false;
 var restart = false;
+var gameOver = false;
 
 var characters = [
         {
@@ -40,7 +39,7 @@ var characters = [
             name: "Obi-Wan Kenobi",
             img: "assets/images/obi-wan-kenobi.png",
             hp: 120,
-            attack: 8,
+            attack: 10,
             counterAttack: 15,
             value: ""}];
 
@@ -87,12 +86,11 @@ function displayEnemies(id, arr){
 }
 
 $(document).ready(function() {
-
     // displays characters to availableCharacters div
     displayCharacters("#availableCharacters", characters)
 
     // activates when a available character is clicked 
-    $(".character").on("click", function(){
+    $(document).on("click", ".character", function(){
         if(userSelected){
             return(false)
         } else{  
@@ -105,7 +103,7 @@ $(document).ready(function() {
             // updates value in userArray
             userArray[0].value = 0
             // hides availableCharacters div
-            $("#availableCharacters").css("display", "none")
+            $("#availableCharacters").empty();
             // moves clicked character to the Your Character section
             displayCharacters("#userCharacter", userArray)
             // moves new array of available characters to availableEnemies div
@@ -151,12 +149,15 @@ $(document).ready(function() {
     });   
 
     // combat logic
-    $(document).on("click", "#attack", function(){
+    $(document).on("click", "#attack", function(event){
         if(enemySelected !== true){
             $("#combatText").text("please select an enemy to fight");
             return(false);
             // happens during the last enemy fight
-        } else if(enemySelected === true && enemyArray.length === 0){
+        } else if(gameOver === true){
+            return(false)
+        }
+        else if(enemySelected === true && enemyArray.length === 0){
             // user attacks when attack button is clicked
             countingAttack(userArray[0].attack)
             // enemyhealth is decreased by user attack
@@ -170,6 +171,7 @@ $(document).ready(function() {
                 $("#defender").empty();
                 // allows the user to restart the game
                 restart = true;
+               
             } else {
                 // counter attack damage
                 counterAttack = characters[0].counterAttack;
@@ -187,6 +189,7 @@ $(document).ready(function() {
                 if(userHp <= 0) {
                     $("#combatText").text("You died, try again")
                     restart = true
+                    gameOver = true  
                 }
             } // happens if an enemy is selected 
         } else {
@@ -223,9 +226,68 @@ $(document).ready(function() {
                 if(userHp <= 0) {
                     $("#combatText").text("You died, try again")
                     // allows the user to restart
-                    restart = true
+                    restart = true;
+                    gameOver = true;
                 }
             }
         }        
+    });
+
+    // restart button logic
+    $(document).on("click", "#restart", function(){
+        if(restart === false){
+            return(false)
+        } else {
+            // clear all divs of text and arrays
+            $("#availableCharacters").empty();
+            $("#userCharacter").empty();
+            $("#availableEnemies").empty();
+            $("#defender").empty();
+            $("#combatText").empty();
+            // reset userAttack
+            userAttack = 0;
+            // clear userArray and enemyArray
+            userArray = [];
+            enemyArray = []
+            // reset characters array
+            characters = [
+                {
+                    name: "Luke Skywalker",
+                    img: "assets/images/luke-skywalker.jpeg",
+                    hp: 100,
+                    attack: 15,
+                    counterAttack: 10,
+                    value: ""},
+                {
+                    name: "Darth Vader",
+                    img: "assets/images/darth-vader.jpg",
+                    hp: 150,
+                    attack: 25,
+                    counterAttack: 20,
+                    value: ""},
+                {
+                    name: "Emperor Palpatine",
+                    img: "assets/images/emperor-palpatine.jpg",
+                    hp: 180,
+                    attack: 20,
+                    counterAttack: 25,
+                    value: ""},
+                {
+                    name: "Obi-Wan Kenobi",
+                    img: "assets/images/obi-wan-kenobi.png",
+                    hp: 120,
+                    attack: 10,
+                    counterAttack: 15,
+                    value: ""}];
+            // display original character array
+            displayCharacters("#availableCharacters", characters)
+            // reset isDefeated userSelected enemySelected and restart
+            isDefeated = false;
+            userSelected = false;
+            enemySelected = false;
+            gameOver = false;
+            restart = false;
+
+        }
     })
 });

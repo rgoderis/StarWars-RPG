@@ -12,7 +12,6 @@ var userSelected = false;
 var enemySelected = false;
 var restart = false;
 var gameOver = false;
-
 var characters = [
         {
             name: "Luke Skywalker",
@@ -95,6 +94,7 @@ $(document).ready(function() {
             return(false)
         } else{  
             $(this).addClass("user")
+            $('audio#music')[0].play()
             // retrieving index of user character
             userIndex = parseInt($(".user").attr("value"));
             userArray = characters.splice(userIndex, 1);
@@ -110,6 +110,7 @@ $(document).ready(function() {
             displayEnemies("#availableEnemies", characters)
             userHp = userArray[0].hp;
             userSelected = true;  
+            
         }
     });  
 
@@ -159,6 +160,7 @@ $(document).ready(function() {
             return(false)
         } // happens during the last enemy fight
         else if(enemySelected === true && enemyArray.length === 0){
+            
             // user attacks when attack button is clicked
             countingAttack(userArray[0].attack)
             // enemyhealth is decreased by user attack

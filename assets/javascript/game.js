@@ -16,30 +16,30 @@ var characters = [
         {
             name: "Luke Skywalker",
             img: "assets/images/luke-skywalker.jpeg",
-            hp: 100,
+            hp: 125,
             attack: 15,
-            counterAttack: 10,
+            counterAttack: 15,
             value: ""},
         {
             name: "Darth Vader",
             img: "assets/images/darth-vader.jpg",
-            hp: 150,
-            attack: 25,
-            counterAttack: 20,
+            hp: 140,
+            attack: 15,
+            counterAttack: 30,
             value: ""},
         {
             name: "Emperor Palpatine",
             img: "assets/images/emperor-palpatine.jpg",
-            hp: 180,
+            hp: 100,
             attack: 20,
-            counterAttack: 25,
+            counterAttack: 35,
             value: ""},
         {
             name: "Obi-Wan Kenobi",
             img: "assets/images/obi-wan-kenobi.png",
-            hp: 120,
-            attack: 12,
-            counterAttack: 15,
+            hp: 130,
+            attack: 15,
+            counterAttack: 20,
             value: ""}];
 
 // function that reassigns the value attribute to its index in the array
@@ -260,30 +260,30 @@ $(document).ready(function() {
                 {
                     name: "Luke Skywalker",
                     img: "assets/images/luke-skywalker.jpeg",
-                    hp: 100,
+                    hp: 125,
                     attack: 15,
-                    counterAttack: 10,
+                    counterAttack: 15,
                     value: ""},
                 {
                     name: "Darth Vader",
                     img: "assets/images/darth-vader.jpg",
-                    hp: 150,
-                    attack: 25,
-                    counterAttack: 20,
+                    hp: 140,
+                    attack: 15,
+                    counterAttack: 30,
                     value: ""},
                 {
                     name: "Emperor Palpatine",
                     img: "assets/images/emperor-palpatine.jpg",
-                    hp: 180,
+                    hp: 100,
                     attack: 20,
-                    counterAttack: 25,
+                    counterAttack: 35,
                     value: ""},
                 {
                     name: "Obi-Wan Kenobi",
                     img: "assets/images/obi-wan-kenobi.png",
-                    hp: 120,
-                    attack: 12,
-                    counterAttack: 15,
+                    hp: 130,
+                    attack: 15,
+                    counterAttack: 20,
                     value: ""}];
             // updates value in characters array
             charIndex(characters)

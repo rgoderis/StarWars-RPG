@@ -171,6 +171,7 @@ $(document).ready(function() {
                 $("#defender").empty();
                 // allows the user to restart the game
                 restart = true;
+                $("#restart").css("display", "inline");
                
             } else {
                 // counter attack damage
@@ -189,6 +190,7 @@ $(document).ready(function() {
                 if(userHp <= 0) {
                     $("#combatText").text("You died, try again")
                     restart = true
+                    $("#restart").css("display", "inline");
                     gameOver = true  
                 }
             } // happens if an enemy is selected 
@@ -227,6 +229,7 @@ $(document).ready(function() {
                     $("#combatText").text("You died, try again")
                     // allows the user to restart
                     restart = true;
+                    $("#restart").css("display", "inline");
                     gameOver = true;
                 }
             }
@@ -287,7 +290,7 @@ $(document).ready(function() {
             enemySelected = false;
             gameOver = false;
             restart = false;
-
+            $("#restart").css("display", "none");
         }
     })
 });

@@ -1,3 +1,13 @@
+/* #header {
+     
+} */
+
+body {
+    background-image: url("../images/background.jpg");
+    color: yellow;
+    font-family: 'Star Jedi', arial;
+}
+
 .img {
     height: 100%;
     width: 100%;
@@ -7,14 +17,20 @@
     height: 100px;
 }
 
+.card-header, .card-footer {
+    background-color: black;
+    color: white;
+}
 #availableCharacters, #userCharacter, #defender{
-    width: 60%;
-    height: 100%
+    /* width: 60%; */
+    height: 100%;
+    margin-right: auto;
 }
 
 #availableEnemies{
     height: 100%;
-    width: 60%
+    /* width: 60%; */
+    margin-right: auto;
 }
 
 #restart {

@@ -39,7 +39,7 @@ var characters = [
             name: "Obi-Wan Kenobi",
             img: "assets/images/obi-wan-kenobi.png",
             hp: 120,
-            attack: 10,
+            attack: 12,
             counterAttack: 15,
             value: ""}];
 
@@ -149,14 +149,15 @@ $(document).ready(function() {
     });   
 
     // combat logic
-    $(document).on("click", "#attack", function(event){
+    $(document).on("click", "#attack", function(){
+        // attack button disabled if no enemy is selected
         if(enemySelected !== true){
             $("#combatText").text("please select an enemy to fight");
             return(false);
-            // happens during the last enemy fight
+            // attack button disabled if the game is over.
         } else if(gameOver === true){
             return(false)
-        }
+        } // happens during the last enemy fight
         else if(enemySelected === true && enemyArray.length === 0){
             // user attacks when attack button is clicked
             countingAttack(userArray[0].attack)
@@ -171,8 +172,8 @@ $(document).ready(function() {
                 $("#defender").empty();
                 // allows the user to restart the game
                 restart = true;
-                $("#restart").css("display", "inline");
-               
+                $("#restart").css("display", "inline"); 
+                // if the enemy has hp after the user attack he couter attacks
             } else {
                 // counter attack damage
                 counterAttack = characters[0].counterAttack;
@@ -186,7 +187,7 @@ $(document).ready(function() {
                 characters[0].hp = enemyHp
                 $("#defender").empty();
                 displayCharacters("#defender", characters);                
-                $("#combatText").text(userName +  " attacked " + enemyName +" for " + userAttack + " damage. " + enemyName + " counter attacked for " + counterAttack + " damage. " + userName + "'s remaining hp is " + userHp + " . " + enemyName + "'s remaining hp is " + enemyHp)
+                $("#combatText").text(userName +  " attacked " + enemyName +" for " + userAttack + " damage. " + enemyName + " counter attacked for " + counterAttack + " damage.")
                 if(userHp <= 0) {
                     $("#combatText").text("You died, try again")
                     restart = true
@@ -203,7 +204,7 @@ $(document).ready(function() {
             enemyName = enemyArray[0].name
             // if the user kills the enemy
             if(enemyHp <= 0){
-                $("#combatText").text(userName +  " attacked " + enemyName +" for " + userAttack + " damage and killed him.  Your ramaining health is " + userHp)
+                $("#combatText").text(userName +  " attacked " + enemyName +" for " + userAttack + " damage and killed him.")
                 // clears enemyArray
                 enemyArray = [];
                 // clears defender div
@@ -223,7 +224,7 @@ $(document).ready(function() {
                 enemyArray[0].hp = enemyHp
                 $("#defender").empty();
                 displayCharacters("#defender", enemyArray);
-                $("#combatText").text(userName +  " attacked " + enemyName +" for " + userAttack + " damage. " + enemyName + " counter attacked for " + counterAttack + " damage. " + userName + "'s remaining hp is " + userHp + " . " + enemyName + "'s remaining hp is " + enemyHp)
+                $("#combatText").text(userName +  " attacked " + enemyName +" for " + userAttack + " damage. " + enemyName + " counter attacked for " + counterAttack + " damage.")
                 // if the user dies
                 if(userHp <= 0) {
                     $("#combatText").text("You died, try again")
@@ -279,9 +280,11 @@ $(document).ready(function() {
                     name: "Obi-Wan Kenobi",
                     img: "assets/images/obi-wan-kenobi.png",
                     hp: 120,
-                    attack: 10,
+                    attack: 12,
                     counterAttack: 15,
                     value: ""}];
+            // updates value in characters array
+            charIndex(characters)
             // display original character array
             displayCharacters("#availableCharacters", characters)
             // reset isDefeated userSelected enemySelected and restart

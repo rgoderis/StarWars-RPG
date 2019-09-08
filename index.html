@@ -5,53 +5,48 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Star Wars RPG Game</title>
-    <link rel="stylesheet" href="assets/css/reset.css">
+    
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="http://allfont.net/allfont.css?fonts=star-jedi" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="assets/css/style.css">
     <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
-    
-
+    <script src="assets/javascript/game.js"></script>
 </head>
+
 <body>
-    <h1>Star Wars RPG!</h1>
-     <!-- div of available characters to choose from -->
-     <div>
-         <div id="availableCharacters" class="row">
-
-         </div>
-     </div>
-    <h2>Your Character</h2>
-    <!--  div showing only the character you selected-->
-    <div  id="userCharacter" class="row">
-
+    <div class="container">
+        <h1 id="header" class="text-right"><strong>Star Wars: The Battle of Heroes</strong></h1>
+        <!-- div of available characters to choose from -->
+        <div id="availableCharacters" class="row"></div>
     </div>
 
-
-    <h2>Enemies Available to Attack</h2>
-    <!-- div of enemies available to attack -->
-    <div id="availableEnemies" class="row">
-
+    <div class="container">
+        <h3>Your Character</h3>
+        <!--  div showing only the character you selected-->
+        <div  id="userCharacter" class="row"></div>
     </div>
 
-    <h2>Fight Section</h2>
-    <!-- attack button -->
-    <button id="attack">Attack</button>
-
-    <h2>Defender</h2>
-    <!-- div of enemy currently fighting -->
-    <div id="defender" class="row">
-
+    <div class="container">
+        <h3>Enemies Available to Attack</h3>
+        <!-- div of enemies available to attack -->
+        <div id="availableEnemies" class="row"></div>
     </div>
-    
+
     <!-- div of text showing attack info  -->
-    <div>
+    <div class="container">
+        <h3>Fight Section</h3>
+        <!-- attack button -->
+        <button id="attack">Attack</button>
         <p id="combatText"></p>
         <!-- restart button -->
         <button id="restart">Restart</button>
     </div>
 
-
-    
-    <script src="assets/javascript/game.js"></script>
+    <div class="container">
+        <h3>Defender</h3>
+        <!-- div of enemy currently fighting -->
+        <div id="defender" class="row"></div>
+    </div>
+   
 </body>
 </html>

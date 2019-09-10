@@ -1,2 +1,3 @@
 # unit-4-game
 JQuery game
+This game allows the player to select a star wars character and pit them against another character.  Each character had different HP, attack, and counter attack.  The player's character attack's and the attack value increases with each hit.  The enemy will counter attack but this value stays static.  If the player defeats all enemies then he wins the game, if not then he can try agian.

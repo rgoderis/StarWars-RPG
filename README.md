@@ -1,3 +1,15 @@
-# unit-4-game
-JQuery game
-This game allows the player to select a star wars character and pit them against another character.  Each character had different HP, attack, and counter attack.  The player's character attack's and the attack value increases with each hit.  The enemy will counter attack but this value stays static.  If the player defeats all enemies then he wins the game, if not then he can try agian.
+# Star Wars RPG
+Star Wars RPG is a JavaScript application that allows the user to choose a character and fight that character against other enemies.  Each character has different HP, attack, and counter attack statistics so the player can win or lose with any character depending on which order of enemies they fight.  
+
+The game utilized jQuery for DOM manipulation and JavaScript functions to calculate hp and attack as well as selecting the selected character and enemy.
+
+### Start Screen
+![start](./assets/images/start.png)
+
+### Combat
+![combat](./assets/images/fight.png)
+
+### Victory
+![victory](./assets/images/won.png)
+
+[Star Wars RPG](https://rgoderis.github.io/StarWars-RPG/)
